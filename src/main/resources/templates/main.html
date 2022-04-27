@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:th="https//www.thymeleaf.org">
+<head th:replace="fragment/fragments::head">
+</head>
+<body>
+    <div th:replace="fragment/fragments::header"></div>
+    <div class="container-xxl my-md-4 bd-layout">
+        <aside class="bd-sidebar">
+            <navbar class="collapse bd-links">
+                <button class="btn d-inline-flex align-items-center rounded collapsed" data-bs-toggle="collapse">
+                    Getting started
+                </button>
+            </navbar>
+        </aside>
+        <main class="bd-main order-1">
+
+            Welcome <span sec:authentication="principal.username">User</span>
+            <form th:action="@{posts/create}" method="post">
+                <div class="form-floating">
+                    <textarea class="form-control" placeholder="Write your Post here" id="post" name="post" style="height: 100px"></textarea>
+                    <label for="post">Create Post</label>
+                </div>
+                <div class="form-floating pt-2">
+                    <button type="submit" class="btn btn-primary">
+                        Create Post
+                    </button>
+                </div>
+            </form>
+        </main>
+    </div>
+
+</body>
+</html>

@@ -1,5 +1,7 @@
 package com.connect.socially.model;
 
+import org.springframework.security.core.GrantedAuthority;
+
 import javax.persistence.*;
 import java.util.Collection;
 
@@ -29,6 +31,7 @@ public class User {
                     name = "role_id", referencedColumnName = "id"))
     private Collection<Role> roles;
 
+
     public User(String firstName, String lastName, String email, String password, Collection<Role> roles) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -37,10 +40,10 @@ public class User {
         this.roles = roles;
     }
 
+
     public User() {
 
     }
-
 
     public Long getId() {
         return id;
@@ -88,5 +91,16 @@ public class User {
 
     public void setRoles(Collection<Role> roles) {
         this.roles = roles;
+    }
+
+    @OneToMany(mappedBy = "user")
+    private Collection<Post> post;
+
+    public Collection<Post> getPost() {
+        return post;
+    }
+
+    public void setPost(Collection<Post> post) {
+        this.post = post;
     }
 }
