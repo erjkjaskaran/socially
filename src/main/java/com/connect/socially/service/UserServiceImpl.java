@@ -4,8 +4,7 @@ package com.connect.socially.service;
 import com.connect.socially.model.Role;
 import com.connect.socially.model.User;
 import com.connect.socially.repository.UserRepository;
-import com.connect.socially.web.dto.UserRegistrationDto;
-import org.springframework.context.annotation.Scope;
+import com.connect.socially.web.dto.UserDto;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,7 +13,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.stream.Collectors;
@@ -40,9 +38,19 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public User save(UserRegistrationDto registrationDto){
+    public User findUserById(Long id) {
+        return userRepository.findUserById(id);
+    }
+
+    @Override
+    public User save(UserDto registrationDto){
         User user=new User(registrationDto.getFirstName(), registrationDto.getLastName(), registrationDto.getEmail(), passwordEncoder.encode(registrationDto.getPassword()), Arrays.asList(new Role("ROLE_USER")));
         return userRepository.save(user);
+    }
+
+    @Override
+    public Collection<User> findAll(){
+        return userRepository.findAll();
     }
 
     @Override

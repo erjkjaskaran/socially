@@ -31,6 +31,10 @@ public class User {
                     name = "role_id", referencedColumnName = "id"))
     private Collection<Role> roles;
 
+    @OneToMany(mappedBy = "user")
+    private Collection<Post> post;
+
+
 
     public User(String firstName, String lastName, String email, String password, Collection<Role> roles) {
         this.firstName = firstName;
@@ -93,9 +97,6 @@ public class User {
         this.roles = roles;
     }
 
-    @OneToMany(mappedBy = "user")
-    private Collection<Post> post;
-
     public Collection<Post> getPost() {
         return post;
     }
@@ -103,4 +104,5 @@ public class User {
     public void setPost(Collection<Post> post) {
         this.post = post;
     }
+
 }

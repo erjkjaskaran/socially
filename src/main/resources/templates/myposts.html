@@ -5,13 +5,23 @@
 <body>
 <div th:replace="fragment/fragments::header"></div>
 <div class="container">
-  <div th:each="post:${posts}">
-    <div>
-      <h6 th:text="${post.user.email}"></h6>
-      <p th:text="${post.post}"></p><br>
-    </div>
-  </div>
 
+    <div>
+      <table class="table">
+          <thead>
+            <td>User</td>
+            <td>Post</td>
+          </thead>
+        <div th:each="post:${posts}">
+          <tr>
+            <td th:text="${post.user.email}">
+            </td>
+            <td th:text="${post.post}">
+            </td>
+          </tr>
+        </div>
+      </table>
+    </div>
 </div>
 </body>
 </html>

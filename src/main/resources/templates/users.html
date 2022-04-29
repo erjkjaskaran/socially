@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https//www.thymeleaf.org">
+<head th:replace="fragment/fragments::head">
+</head>
+<body>
+<div th:replace="fragment/fragments::header"></div>
+<div class="container">
+
+  <div>
+    <table class="table">
+      <thead>
+      <td>Username</td>
+      <td>Name</td>
+      <td></td>
+      </thead>
+      <div th:each="user:${users}">
+        <tr>
+          <td th:text="${user.email}">
+          </td>
+          <td th:text="${user.firstName}+' '+${user.lastName}">
+          </td>
+          <td>
+            <span th:if="${#lists.contains(friends,user)}">
+                          <a class="btn btn-secondary" disabled>Request Sent</a>&nbsp
+                          <a class="btn btn-primary" th:href="@{/friend/{user_id}/cancelrequest(user_id=${user.id})}">Cancel Request</a>
+            </span>
+            </span>
+            <span th:unless="${#lists.contains(friends,user)}">
+              <a class="btn btn-primary" th:href="@{/friend/{user_id}/request(user_id=${user.id})}">Add Friend</a></span>
+          </td>
+        </tr>
+      </div>
+    </table>
+  </div>
+</div>
+</body>
+</html>
