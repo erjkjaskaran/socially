@@ -55,11 +55,9 @@ public class UserController {
     public String show_all_user(Model model){
         Collection<User> users = (Collection<User>) userService.findAll();
         User user=currentUser.getCurrentUser();
-        System.out.println(friendService.findFriendByUser_id(user));
         List<User> friend= friendService.findFriendByUser_id(user);
         model.addAttribute("users", users);
         model.addAttribute("friends",friend);
-        System.out.println(friendService.findFriendByUser_id(user));
         return "users";
 
     }

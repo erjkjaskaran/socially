@@ -1,8 +1,15 @@
 package com.connect.socially.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name="post", uniqueConstraints = @UniqueConstraint(columnNames = "id"))
 public class Post {
     @Id
@@ -14,38 +21,5 @@ public class Post {
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private User user;
 
-    public Post(String post, User user) {
-        this.post = post;
-        this.user = user;
-    }
-
-
-    public Post() {
-
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getPost() {
-        return post;
-    }
-
-    public void setPost(String post) {
-        this.post = post;
-    }
 
 }

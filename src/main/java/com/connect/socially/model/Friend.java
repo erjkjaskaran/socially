@@ -1,9 +1,16 @@
 package com.connect.socially.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.util.Optional;
 
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name="friend", uniqueConstraints = @UniqueConstraint(columnNames = "id"))
 public class Friend {
     @Id
@@ -21,38 +28,6 @@ public class Friend {
     @Column(nullable = false)
     private String status;
 
-    public Friend() {
-
-    }
-
-
-    public User getUserid() {
-        return userid;
-    }
-
-    public void setUserid(User userid) {
-        this.userid = userid;
-    }
-
-    public User getFriendid() {
-        return friendid;
-    }
-
-    public void setFriendid(User friendid) {
-        this.friendid = friendid;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getStatus() {
-        return status;
-    }
 
     public Friend(User userid, User friendid, String status) {
         this.userid = userid;
@@ -60,10 +35,5 @@ public class Friend {
         this.status = status;
     }
 
-    public Friend(Long id, User userid, User friendid, String status) {
-        this.id = id;
-        this.userid = userid;
-        this.friendid = friendid;
-        this.status = status;
-    }
+
 }
