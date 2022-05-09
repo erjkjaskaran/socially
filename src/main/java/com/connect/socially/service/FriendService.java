@@ -12,5 +12,15 @@ import java.util.List;
 public interface FriendService{
     Friend save(FriendDto friendDto);
 
-    List<User> findFriendByUser_id(User user);
+    Friend update(Friend friend);
+
+    List<User> findFriendRequestByUser_id(User user);
+
+    List<User> findFriendByFriend_id(User user);
+
+    Long delete(User user, User friend);
+
+    Friend findFriendByUseridAndFriendId(User user, User friend);
+
+    void save(User user, User friend);
 }

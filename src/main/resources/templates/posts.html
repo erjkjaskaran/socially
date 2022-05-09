@@ -3,15 +3,17 @@
 <head th:replace="fragment/fragments::head">
 </head>
 <body>
-    <div th:replace="fragment/fragments::header"></div>
-    <div class="container">
-        <div th:each="post:${posts}">
-            <div>
-            <h6 th:text="${post.user.email}"></h6>
-            <p th:text="${post.post}"></p><br>
-            </div>
-        </div>
+<div th:replace="fragment/fragments::header"></div>
+<div class="container">
+    <div th:each="post:${posts}">
+        <div>
 
+            <h6 th:text="${post.user.email}"></h6>
+            <p th:text="${post.post}"></p>
+            <a class="btn btn-primary" th:href="@{/comment/post/{post_id}(post_id=${post.id})}">Reply</a>
+        </div>
     </div>
+
+</div>
 </body>
 </html>

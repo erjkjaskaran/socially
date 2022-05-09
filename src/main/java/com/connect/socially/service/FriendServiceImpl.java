@@ -6,8 +6,8 @@ import com.connect.socially.repository.FriendRepository;
 import com.connect.socially.web.dto.FriendDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -18,12 +18,39 @@ public class FriendServiceImpl implements FriendService{
 
     @Override
     public Friend save(FriendDto friendDto) {
-        Friend friend=new Friend(friendDto.getUser_id(), friendDto.getFriend_id(), friendDto.getStatus());
+        Friend friend=new Friend(friendDto.getUser_id(), friendDto.getFriend_id());
         return friendRepository.save(friend);
     }
 
     @Override
-    public List<User> findFriendByUser_id(User user) {
+    public Friend update(Friend friend) {
+        return friendRepository.save(friend);
+    }
+
+    @Override
+    public List<User> findFriendRequestByUser_id(User user) {
         return  friendRepository.getFriendFriendidByUserid(user);
+    }
+
+    @Override
+    public List<User> findFriendByFriend_id(User user) {
+        return friendRepository.getFriendUseridByFriendid(user);
+    }
+
+    @Override
+    @Transactional
+    public Long delete(User user, User friend){
+        return friendRepository.deleteByUseridAndFriendid(user, friend);
+    }
+
+    @Override
+    public Friend findFriendByUseridAndFriendId(User user, User friend) {
+        return friendRepository.getFriendByUseridAndFriendid(user, friend);
+    }
+
+    @Override
+    public void save(User user, User friend) {
+        Friend friend1=new Friend(user, friend);
+        friendRepository.save(friend1);
     }
 }

@@ -5,13 +5,7 @@
 <body>
     <div th:replace="fragment/fragments::header"></div>
     <div class="container-xxl my-md-4 bd-layout">
-        <aside class="bd-sidebar">
-            <navbar class="collapse bd-links">
-                <button class="btn d-inline-flex align-items-center rounded collapsed" data-bs-toggle="collapse">
-                    Getting started
-                </button>
-            </navbar>
-        </aside>
+
         <main class="bd-main order-1">
 
             Welcome <span sec:authentication="principal.username">User</span>

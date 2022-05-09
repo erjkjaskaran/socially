@@ -16,4 +16,6 @@ public interface UserService extends UserDetailsService {
     User findUserById(Long id);
 
     Collection<User> findAll();
+
+    User update(User user, User friend);
 }

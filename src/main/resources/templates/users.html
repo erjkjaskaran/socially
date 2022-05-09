@@ -13,18 +13,30 @@
       </thead>
       <div th:each="user:${users}">
         <tr>
-          <td th:text="${user.email}">
+          <td th:text="${user.email}" width="30%">
           </td>
-          <td th:text="${user.firstName}+' '+${user.lastName}">
+          <td th:text="${user.firstName}+' '+${user.lastName}" width="30%">
           </td>
-          <td>
-            <span th:if="${#lists.contains(friends,user)}">
+          <td width="30%">
+            <span th:if="${#lists.contains(requestsent,user)}">
                           <a class="btn btn-secondary" disabled>Request Sent</a>&nbsp
                           <a class="btn btn-primary" th:href="@{/friend/{user_id}/cancelrequest(user_id=${user.id})}">Cancel Request</a>
             </span>
+            <span th:unless="${#lists.contains(requestsent,user)}">
+              <span th:if="${#lists.contains(requestreceived,user)}">
+                          <a class="btn btn-primary" th:href="@{/friend/{user_id}/accept(user_id=${user.id})}">Accept Request</a>
+                          <a class="btn btn-primary" th:href="@{/friend/{user_id}/decline(user_id=${user.id})}">Decline</a>
+              </span>
+              <span th:unless="${#lists.contains(requestreceived,user)}">
+                <span th:if="${#lists.contains(friends,user)}">
+                          <a class="btn btn-primary" th:href="@{/friend/{user_id}/remove(user_id=${user.id})}">Remove Friend</a>
+                </span>
+                <span th:unless="${#lists.contains(friends,user)}">
+                  <a class="btn btn-primary" th:href="@{/friend/{user_id}/request(user_id=${user.id})}">Add Friend</a>
+                </span>
+              </span>
+
             </span>
-            <span th:unless="${#lists.contains(friends,user)}">
-              <a class="btn btn-primary" th:href="@{/friend/{user_id}/request(user_id=${user.id})}">Add Friend</a></span>
           </td>
         </tr>
       </div>

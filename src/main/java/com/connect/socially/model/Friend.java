@@ -5,7 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Optional;
 
 @Entity
 @Data
@@ -25,14 +24,11 @@ public class Friend {
     @JoinColumn(name = "friend_id",nullable = false)
     private User friendid;
 
-    @Column(nullable = false)
-    private String status;
 
 
-    public Friend(User userid, User friendid, String status) {
+    public Friend(User userid, User friendid) {
         this.userid = userid;
         this.friendid = friendid;
-        this.status = status;
     }
 
 

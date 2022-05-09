@@ -5,12 +5,11 @@ import com.connect.socially.model.User;
 public class FriendDto {
     private User user_id;
     private User friend_id;
-    private String status;
 
-    public FriendDto(User user_id, User friend_id, String status) {
+
+    public FriendDto(User user_id, User friend_id) {
         this.user_id = user_id;
         this.friend_id = friend_id;
-        this.status = status;
     }
 
     public User getUser_id() {
@@ -29,11 +28,4 @@ public class FriendDto {
         this.friend_id = friend_id;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
 }

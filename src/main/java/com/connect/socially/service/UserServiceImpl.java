@@ -5,6 +5,7 @@ import com.connect.socially.model.Role;
 import com.connect.socially.model.User;
 import com.connect.socially.repository.UserRepository;
 import com.connect.socially.web.dto.UserDto;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -21,6 +22,7 @@ import java.util.stream.Collectors;
 @Service
 public class UserServiceImpl implements UserService{
 
+    @Autowired
     private UserRepository userRepository;
 
 
@@ -51,6 +53,16 @@ public class UserServiceImpl implements UserService{
     @Override
     public Collection<User> findAll(){
         return userRepository.findAll();
+    }
+
+    @Override
+    public User update(User user, User friend) {
+        Collection<User> user_friends=user.getFriends();
+        Collection<User> friends_friends=friend.getFriends();
+        user_friends.remove(friend);
+        friends_friends.remove(user);
+        userRepository.save(friend);
+        return userRepository.save(user);
     }
 
     @Override

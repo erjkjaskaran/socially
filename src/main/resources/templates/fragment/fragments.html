@@ -16,7 +16,12 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <span sec:authorize="isAuthenticated()"><a class="navbar-brand p-2" href="#" th:href="@{/friend/requests}">Friend Requests </a><a class="navbar-brand p-2" href="#" th:href="@{/user/all}">Show All Users </a><a class="navbar-brand" th:href="@{/logout}">Logout</a></span>
+                <span sec:authorize="isAuthenticated()">
+                    <a class="navbar-brand p-2" href="#" th:href="@{/posts/posts}" th:text="Posts"></a>
+                    <a class="navbar-brand p-2" href="#" th:href="@{/friend/all}" th:text="'My friends ('+${friend_count}+')'"></a>
+                    <a class="navbar-brand p-2" href="#" th:href="@{/friend/requests}" th:text="'Friend Requests ('+${request_count}+')'">Friend Requests </a>
+                    <a class="navbar-brand p-2" href="#" th:href="@{/user/all}">Show All Users </a>
+                    <a class="navbar-brand" th:href="@{/logout}">Logout</a></span>
                 <span sec:authorize="isAnonymous()"><a class="navbar-brand" href="#" th:href="@{/}">Registration and Login Module</a></span>
             </div>
         </nav>
